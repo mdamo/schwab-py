@@ -4,9 +4,9 @@ import pprint
 from schwab.streaming import StreamClient
 import schwab
 
-API_KEY = "XXXXXX"
-CLIENT_SECRET = "XXXXXX"
-CALLBACK_URL = "https://xxxxxx"
+API_KEY = ""
+CLIENT_SECRET = ""
+CALLBACK_URL = "https://127.0.0.1"
 
 class MyStreamConsumer:
     """
@@ -29,11 +29,12 @@ class MyStreamConsumer:
         self.schwab_client = None
         self.stream_client = None
 
-        self.symbols = [
-            'GOOG', 'GOOGL', 'BP', 'CVS', 'ADBE', 'CRM', 'SNAP', 'AMZN',
-            'BABA', 'DIS', 'TWTR', 'M', 'USO', 'AAPL', 'NFLX', 'GE', 'TSLA',
-            'F', 'SPY', 'FDX', 'UBER', 'ROKU', 'X', 'FB', 'BIDU', 'FIT'
-        ]
+        #self.symbols = [
+        #    'GOOG', 'GOOGL', 'BP', 'CVS', 'ADBE', 'CRM', 'SNAP', 'AMZN',
+        #    'BABA', 'DIS', 'TWTR', 'M', 'USO', 'AAPL', 'NFLX', 'GE', 'TSLA',
+        #    'F', 'SPY', 'FDX', 'UBER', 'ROKU', 'X', 'FB', 'BIDU', 'FIT'
+        #]
+        self.symbols = ['BP', 'CVS','UBER']
 
         # Create a queue so we can queue up work gathered from the client
         self.queue = asyncio.Queue(queue_size)
