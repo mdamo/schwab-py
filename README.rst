@@ -75,21 +75,13 @@ daily historical price data for the past twenty years:
 
   api_key = 'YOUR_API_KEY'
   app_secret = 'YOUR_APP_SECRET'
-  redirect_uri = 'https://127.0.0.1/'
+  callback_url = 'https://127.0.0.1:8182/'
   token_path = '/path/to/token.json'
 
-  try:
-      c = auth.client_from_token_file(token_path, api_key)
-  except FileNotFoundError:
-      c = auth.client_from_manual_flow(
-          api_key, app_secret, redirect_uri, token_path)
+  c = auth.easy_client(api_key, app_secret, callback_url, token_path)
 
-  r = c.get_price_history('AAPL',
-          period_type=client.Client.PriceHistory.PeriodType.YEAR,
-          period=client.Client.PriceHistory.Period.TWENTY_YEARS,
-          frequency_type=client.Client.PriceHistory.FrequencyType.DAILY,
-          frequency=client.Client.PriceHistory.Frequency.DAILY)
-  assert r.status_code == 200, r.raise_for_status()
+  r = c.get_price_history_every_day('AAPL')
+  r.raise_for_status()
   print(json.dumps(r.json(), indent=4))
 
 Why should I use ``schwab-py``?
@@ -132,7 +124,7 @@ Bug reports, suggestions, and patches are always welcome! Submit issues
 `here <https://github.com/alexgolec/schwab-py/pulls>`__.
 
 ``schwab-py`` is released under the
-`MIT license <https://github.com/alexgolec/tda-api/blob/master/LICENSE>`__.
+`MIT license <https://github.com/alexgolec/schwab-py/blob/master/LICENSE>`__.
 
 **Disclaimer:** *schwab-py is an unofficial API wrapper. It is in no way 
 endorsed by or affiliated with Charles Schwab or any associated organization.

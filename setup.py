@@ -32,10 +32,13 @@ setuptools.setup(
     install_requires=[
         'autopep8',
         'authlib',
+        'flask',
         'httpx',
+        'multiprocess',
         'prompt_toolkit',
+        'psutil',
         'python-dateutil',
-        'selenium',
+        'urllib3',
         'websockets'
     ],
     extras_require={
@@ -61,6 +64,7 @@ setuptools.setup(
     license='MIT',
     scripts=[
         'bin/schwab-order-codegen.py',
+        'bin/schwab-generate-token.py',
     ],
 )
 
